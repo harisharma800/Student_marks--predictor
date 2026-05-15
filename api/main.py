@@ -1,4 +1,4 @@
- 
+from dotenv import load_dotenv 
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
@@ -11,7 +11,11 @@ import torch.nn as nn
 
 import sys
 import os
-
+load_dotenv()
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql://postgres:password@localhost:5432/student_db"
+)
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from database.db import SessionLocal, Student
