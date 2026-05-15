@@ -3,9 +3,12 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
-DATABASE_URL = "postgresql://postgres:q52erj84@localhost:5432/student_db"
-
-engine = create_engine(DATABASE_URL)
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql://postgres:password@localhost:5432/student_db"
+)
+engine = create_engine(DATABASE_URL,
+    connect_args={"sslmode": "require"})
 
 SessionLocal = sessionmaker(bind=engine)
 
