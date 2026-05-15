@@ -8,13 +8,13 @@ import torch
 import pickle
 import numpy as np
 import torch.nn as nn
-
 import sys
 import os
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from database.db import SessionLocal, Student
+
 
 
 def get_db():
